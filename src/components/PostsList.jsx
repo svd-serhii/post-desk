@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Post from "./Post";
-import classes from "./PostsList.module.css";
 import NewPost from "./NewPost";
+import Modal from "./Modal";
+import classes from "./PostsList.module.css";
 
-const PostsList = () => {
+const PostsList = (props) => {
 	const [enteredBody, setEnteredBody] = useState("");
 	const [enteredAuthor, setEnteredAuthor] = useState("");
 
@@ -14,12 +15,18 @@ const PostsList = () => {
 	function authorChangeHandler(e) {
 		setEnteredAuthor(e.target.value);
 	}
+
 	return (
 		<>
-			<NewPost
-				onBodyChange={bodyChangeHandler}
-				onAuthorChange={authorChangeHandler}
-			/>
+			{props.isPosting && (
+				<Modal onClose={props.onStopPosting}>
+					<NewPost
+						onBodyChange={bodyChangeHandler}
+						onAuthorChange={authorChangeHandler}
+					/>
+				</Modal>
+			)}
+
 			<ul className={classes.posts}>
 				<Post author={enteredAuthor} body={enteredBody} />
 				<Post author={enteredAuthor} body={enteredBody} />
