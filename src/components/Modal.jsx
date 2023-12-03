@@ -1,12 +1,20 @@
 import React from "react";
 import classes from "./Modal.module.css";
 
-const Modal = (props) => {
+const Modal = ({ children, onClose }) => {
+	const handleModalClick = (e) => {
+		e.stopPropagation();
+	};
+
 	return (
 		<>
-			<div className={classes.backdrop} onClick={props.onClose}>
-				<dialog open={true} className={classes.modal}>
-					{props.children}
+			<div className={classes.backdrop} onClick={onClose}>
+				<dialog
+					open={true}
+					className={classes.modal}
+					onClick={handleModalClick}
+				>
+					{children}
 				</dialog>
 			</div>
 		</>
