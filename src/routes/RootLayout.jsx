@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 const RootLayout = () => {
 	return (
 		<>
-            <MainHeader />
-            <Outlet/>
+			<MainHeader />
+			<Outlet />
 		</>
 	);
 };
